@@ -1,0 +1,88 @@
+---
+title: Installation
+description: A guide in my new Starlight docs site.
+---
+
+
+- 1️⃣ Ensure that `golang` tools are _properly_ installed on your machine
+
+  ```bash
+  $ go version
+  go version go0.0.0 os/arch64
+
+  $ go env GOPATH
+  ~/go/0.0.0/packages
+  ```
+
+  **Important rules:**
+  - `GOPATH` envvar must be set to output of `go env GOPATH`
+  - `$GOPATH/bin` must be included to your `PATH` envvar
+
+  So, your `~/.zprofile` should include something like this:
+
+  ```
+  export GOPATH="$(go env GOPATH)"
+  export PATH="$PATH:$GOPATH/bin"
+  ```
+
+
+- 2️⃣ Install prerequisites
+  - Install and enable [pre-commit](https://pre-commit.com/#install)
+  - Install [GNU make](https://www.gnu.org/software/make/)
+  - Install [govulncheck](https://go.googlesource.com/vuln)
+  - Install [gcov2lcov](https://github.com/jandelgado/gcov2lcov?tab=readme-ov-file#installation)
+
+  ```bash
+  $ brew install pre-commit
+  ==> Fetching dependencies for pre-commit
+  ==> Fetching pre-commit
+  ==> Installing dependencies for pre-commit
+  ==> Installing pre-commit
+  ...
+
+  $ brew install make
+  ==> Fetching dependencies for make
+  ==> Fetching make
+  ==> Installing dependencies for make
+  ==> Installing make
+  ...
+
+  $ pre-commit install
+  pre-commit installed at .git/hooks/pre-commit
+
+  $ go install golang.org/x/vuln/cmd/govulncheck@latest
+  go: downloading golang.org/x/vuln/cmd/govulncheck v0.0.0
+
+  $ go install github.com/jandelgado/gcov2lcov@latest
+  go: downloading github.com/jandelgado/gcov2lcov v0.0.0
+  ```
+
+
+- 3️⃣ (Optional) Ensure that you can access private dependencies
+
+  You need to get a Personal Access Token from your GitHub account in order to
+  download private dependencies.
+
+  To get these, visit https://github.com/settings/tokens/new and create a new
+  token with the `read:packages` scope.
+
+  Then, you need to create or edit the `.netrc` file in your home directory with
+  the following content:
+
+  ```
+  machine github.com login <your-github-username> password <your-github-access-token>
+  ```
+
+
+- 4️⃣ Download required modules for the project
+
+  ```bash
+  $ make dep
+  ```
+
+
+- 5️⃣ (Optional) Check installation via pre-commit scripts
+
+  ```bash
+  $ pre-commit run --all-files
+  ```

@@ -1,0 +1,39 @@
+---
+title: Running the Project
+description: A guide in my new Starlight docs site.
+---
+
+Before running any command, please make sure that you have configured your environment regarding your own settings first. You may found the related entries that can be configured in `.env` file.
+
+```bash
+$ make run
+17:05:20.311 INFO HttpService is starting... {"addr":":8080"}
+```
+
+- You can access http://localhost:8080/ to check if the project is running
+
+
+### Running the project (with hot-reloading development mode)
+
+```bash
+$ make dev
+```
+
+
+### Testing the project
+
+```bash
+$ make test
+```
+
+
+### Development (with Docker Compose)
+
+```bash
+# first start freshly built containers in background (daemon mode)
+$ make container-start
+
+# then launch watch mode to reflect changes on time
+$ make container-dev
+```
+

@@ -1,0 +1,18 @@
+---
+title: Quick Start
+description: A guide in my new Starlight docs site.
+---
+
+Clone this repository into your projects folder
+
+
+### Structure
+
+This project inherits the [Standard Go Project Layout](https://github.com/golang-standards/project-layout) structure but includes its own interpretation.
+
+
+### Directories
+
+- The `pkg` directory contains packages for project modules. The absence of a direct `internal` folder helps us maintain a mentally isolated modular structure.
+- The `deployment` directory contains local and remote infrastructure configuration files, such as `compose.yml`.
+- The `cmd` directory contains the entrypoint for the project binaries.
